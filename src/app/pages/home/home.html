@@ -1,261 +1,415 @@
 <div class="app-container" [class.theme-dark]="isDarkMode()" [class.theme-light]="!isDarkMode()">
-  <!-- Ambient backdrop lights -->
-  <div class="ambient-glow-1"></div>
-  <div class="ambient-glow-2"></div>
+  <!-- Glowing background elements -->
+  <div class="bg-ambient-light"></div>
 
   <!-- Barra de Navegación Glassmorphic -->
   <nav class="navbar">
-    <div class="logo-wrap">
-      <div class="logo-glow">C</div>
-      <span class="logo-brand">CreativeStudio</span>
+    <div class="logo-container">
+      <div class="logo-icon">M</div>
+      <span class="logo-text">MiMarca</span>
     </div>
-    
-    <ul class="nav-menu">
+
+    <ul class="nav-links">
       <li><a href="#inicio">Inicio</a></li>
-      <li><a href="#personalizador">Personalizar</a></li>
-      <li><a href="#proyectos">Portafolio</a></li>
-      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#demostracion">Dashboard</a></li>
+      <li><a href="#precios">Planes</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
 
-    <div class="nav-actions">
+    <div class="navbar-actions">
       <!-- Theme Switch Button -->
-      <button class="theme-switch" (click)="toggleTheme()" aria-label="Cambiar tema">
+      <button class="theme-toggle-btn" (click)="toggleTheme()" aria-label="Cambiar tema">
         @if (isDarkMode()) {
-          <span>☀️</span>
+        <span>☀️</span>
         } @else {
-          <span>🌙</span>
+        <span>🌙</span>
         }
       </button>
-      
-      <button class="btn-neon" (click)="scrollToSection('contacto')">
-        Hablemos
+
+      <button class="btn-primary" (click)="scrollToSection('contacto')">
+        Comenzar
       </button>
     </div>
   </nav>
 
-  <!-- Sección Hero de Alto Impacto -->
-  <header id="inicio" class="hero">
-    <div class="hero-pill">
-      <span>✨</span> ESTUDIO DE DISEÑO BOUTIQUE
+  <!-- Sección Hero -->
+  <header id="inicio" class="hero-section">
+    <div class="hero-content">
+      <div class="badge-new">
+        <span>🚀</span> ¡Descubre el nuevo diseño ultra rápido!
+      </div>
+
+      <h1 class="hero-title">
+        Construye el futuro de tu <span>negocio digital</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        Diseñamos y desarrollamos soluciones web de alta gama que combinan estética premium con rendimiento excepcional.
+        Hacemos que tu marca destaque en internet.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn-primary" (click)="scrollToSection('precios')">
+          Ver Planes ⚡
+        </button>
+        <button class="btn-secondary" (click)="scrollToSection('servicios')">
+          Saber Más
+        </button>
+      </div>
     </div>
-    
-    <h1 class="hero-headline">
-      Creamos marcas y productos que <span>inspiran</span> al mundo entero
-    </h1>
-    
-    <p class="hero-desc">
-      Somos un colectivo creativo multidisciplinar. Fusionamos estética sofisticada de vanguardia con desarrollo web de alta precisión para llevar tu negocio a otro nivel.
-    </p>
-    
-    <div class="hero-btns">
-      <button class="btn-neon" (click)="scrollToSection('proyectos')">
-        Ver Portafolio 📁
-      </button>
-      <button class="btn-outline" (click)="scrollToSection('personalizador')">
-        Configurar Producto
-      </button>
+
+    <!-- Floating Interactive Mockup Widget -->
+    <div class="hero-mockup-wrapper">
+      <div class="glow-backdrop"></div>
+      <div class="hero-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dots">
+            <span class="mockup-dot red"></span>
+            <span class="mockup-dot yellow"></span>
+            <span class="mockup-dot green"></span>
+          </div>
+          <span class="mockup-title">Rendimiento en Vivo</span>
+        </div>
+
+        <div class="mockup-chart-row">
+          <div class="mockup-chart-bar" style="height: 60%;" data-val="60%"></div>
+          <div class="mockup-chart-bar" style="height: 85%;" data-val="85%"></div>
+          <div class="mockup-chart-bar" style="height: 70%;" data-val="70%"></div>
+          <div class="mockup-chart-bar" style="height: 98%;" data-val="98%"></div>
+          <div class="mockup-chart-bar" style="height: 78%;" data-val="78%"></div>
+          <div class="mockup-chart-bar" style="height: 90%;" data-val="90%"></div>
+        </div>
+
+        <div class="mockup-stats">
+          <div class="stat-item">
+            <span class="stat-label">Velocidad UX</span>
+            <span class="stat-value">99.8%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Crecimiento SEO</span>
+            <span class="stat-value">+42.5%</span>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- Sección: Personalizador de Producto Interactivo -->
-  <section id="personalizador" class="customizer-section">
-    <div class="section-head">
-      <span class="section-tag">Interactividad</span>
-      <h2>Personalizador 3D Studio Pro</h2>
-      <p>Interactúa con nuestro panel de personalización en tiempo real. Cambia los colores para simular el acabado de nuestros auriculares premium y observa cómo se actualizan sus especificaciones técnicas de inmediato.</p>
+  <!-- Sección de Servicios/Características -->
+  <section id="servicios" class="services-section">
+    <div class="section-header">
+      <span class="section-badge">Qué Hacemos</span>
+      <h2 class="section-title">Servicios de Nivel Premium</h2>
+      <p class="section-subtitle">
+        Nos enfocamos en la excelencia técnica y el diseño de interacción para darte una ventaja competitiva real.
+      </p>
     </div>
 
-    <div class="customizer-grid">
-      <!-- Interactive Preview Box -->
-      <div class="customizer-preview" [class]="activeProductColor()">
-        <span class="badge-tag">Studio Pro v4</span>
-        <div class="product-art"></div>
+    <div class="grid-cards">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Diseño Web Premium</h3>
+        <p>Interfaces personalizadas con animaciones fluidas y una experiencia de usuario que enamora a primera vista.
+        </p>
       </div>
 
-      <!-- Control Panel -->
-      <div class="customizer-panel">
-        <div class="product-info">
-          <h3>Auriculares Studio Pro</h3>
-          <span class="price">$299.00 USD</span>
-          <p>Experimenta un sonido de fidelidad inigualable con cancelación activa de ruido adaptable, almohadillas ergonómicas de espuma viscoelástica y batería de larga duración.</p>
-        </div>
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Optimización Extrema</h3>
+        <p>Estructura de código limpia y moderna para tiempos de carga inferiores a 1 segundo, maximizando la retención.
+        </p>
+      </div>
 
-        <!-- Color Selector Buttons -->
-        <div>
-          <span class="option-label">Selecciona Acabado</span>
-          <div class="color-palette">
-            <button class="color-btn pink" [class.active]="activeColor() === 'pink'" (click)="setProductColor('pink')" aria-label="Acabado Rosa Neón"></button>
-            <button class="color-btn purple" [class.active]="activeColor() === 'purple'" (click)="setProductColor('purple')" aria-label="Acabado Violeta Profundo"></button>
-            <button class="color-btn silver" [class.active]="activeColor() === 'silver'" (click)="setProductColor('silver')" aria-label="Acabado Plata Lunar"></button>
-            <button class="color-btn dark" [class.active]="activeColor() === 'dark'" (click)="setProductColor('dark')" aria-label="Acabado Negro Absoluto"></button>
-          </div>
-        </div>
-
-        <!-- Specs progress list that update dynamically -->
-        <div class="tech-specs">
-          <span class="option-label">Rendimiento Técnico</span>
-          
-          <!-- Spec 1 -->
-          <div class="spec-row">
-            <div class="spec-name-wrap">
-              <span>Atenuación de Ruido</span>
-              <span>{{ activeSpecs().anc }}%</span>
-            </div>
-            <div class="spec-progress-bg">
-              <div class="spec-progress-bar" [class]="activeProductColor()" [style.width.%]="activeSpecs().anc"></div>
-            </div>
-          </div>
-
-          <!-- Spec 2 -->
-          <div class="spec-row">
-            <div class="spec-name-wrap">
-              <span>Autonomía de Batería</span>
-              <span>{{ activeSpecs().battery }} hrs</span>
-            </div>
-            <div class="spec-progress-bg">
-              <div class="spec-progress-bar" [class]="activeProductColor()" [style.width.%]="(activeSpecs().battery / 60) * 100"></div>
-            </div>
-          </div>
-
-          <!-- Spec 3 -->
-          <div class="spec-row">
-            <div class="spec-name-wrap">
-              <span>Latencia de Audio (Ultra-baja)</span>
-              <span>{{ activeSpecs().latency }} ms</span>
-            </div>
-            <div class="spec-progress-bg">
-              <div class="spec-progress-bar" [class]="activeProductColor()" [style.width.%]="100 - (activeSpecs().latency * 4)"></div>
-            </div>
-          </div>
-        </div>
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Adaptabilidad Total</h3>
+        <p>Desarrollo responsive meticuloso que asegura que tu marca brille en smartphones, tablets y pantallas
+          gigantes.</p>
       </div>
     </div>
   </section>
 
-  <!-- Sección: Portafolio Filtrable y Modal de Detalles -->
-  <section id="proyectos" class="showcase-sec">
-    <div class="section-head">
-      <span class="section-tag">Portafolio</span>
-      <h2>Nuestros Proyectos Recientes</h2>
-      <p>Filtrado dinámico e inmersivo. Elige una categoría para ver los trabajos de diseño web, identidad de marca y modelos interactivos 3D que hemos creado para empresas pioneras.</p>
+  <!-- Sección Demostrativa Interactiva (Dashboard Mockup) -->
+  <section id="demostracion" class="showcase-section">
+    <div class="section-header">
+      <span class="section-badge">Demostración</span>
+      <h2 class="section-title">Control Total de tus Métricas</h2>
+      <p class="section-subtitle">
+        Haz clic en las pestañas del panel lateral para simular en tiempo real cómo gestionamos los diferentes aspectos
+        de tu sitio web.
+      </p>
     </div>
 
-    <!-- Filter navigation -->
-    <ul class="filter-menu">
-      <li><button class="filter-btn" [class.active]="activeFilter() === 'todos'" (click)="setFilter('todos')">Todos</button></li>
-      <li><button class="filter-btn" [class.active]="activeFilter() === 'branding'" (click)="setFilter('branding')">Branding</button></li>
-      <li><button class="filter-btn" [class.active]="activeFilter() === 'web'" (click)="setFilter('web')">Websites</button></li>
-      <li><button class="filter-btn" [class.active]="activeFilter() === '3d'" (click)="setFilter('3d')">3D & CGI</button></li>
-    </ul>
+    <div class="showcase-container">
+      <!-- Tabs Switcher -->
+      <div class="showcase-content">
+        <div class="tabs-container">
+          <button class="tab-btn" [class.active]="activeTab() === 'analytics'" (click)="setActiveTab('analytics')">
+            <div class="tab-icon">📊</div>
+            <div class="tab-details">
+              <span class="tab-title">Analíticas Avanzadas</span>
+              <span class="tab-desc">Visitas, conversiones e interacciones.</span>
+            </div>
+          </button>
 
-    <!-- Project Cards Grid -->
-    <div class="showcase-grid">
-      @for (project of filteredProjects(); track project.id) {
-        <div class="project-card" (click)="openProject(project)">
-          <div class="project-media"></div>
-          <div class="project-body">
-            <span class="project-category">{{ project.categoryName }}</span>
-            <h3>{{ project.title }}</h3>
-            <p>{{ project.shortDesc }}</p>
-          </div>
-        </div>
-      }
-    </div>
+          <button class="tab-btn" [class.active]="activeTab() === 'performance'" (click)="setActiveTab('performance')">
+            <div class="tab-icon">⚡</div>
+            <div class="tab-details">
+              <span class="tab-title">Rendimiento Web</span>
+              <span class="tab-desc">Métricas Core Web Vitals optimizadas.</span>
+            </div>
+          </button>
 
-    <!-- Interactive Expanding Project Detail Modal -->
-    @if (selectedProject()) {
-      <div class="project-modal" (click)="closeProject()">
-        <div class="modal-content" (click)="$event.stopPropagation()">
-          <div class="modal-header">
-            <h3>{{ selectedProject()?.title }}</h3>
-            <button class="modal-close" (click)="closeProject()" aria-label="Cerrar modal">×</button>
-          </div>
-          <div class="modal-body">
-            <div class="modal-media">📁</div>
-            <p class="project-category">{{ selectedProject()?.categoryName }}</p>
-            <p class="modal-desc">{{ selectedProject()?.longDesc }}</p>
-          </div>
+          <button class="tab-btn" [class.active]="activeTab() === 'security'" (click)="setActiveTab('security')">
+            <div class="tab-icon">🔒</div>
+            <div class="tab-details">
+              <span class="tab-title">Seguridad Activa</span>
+              <span class="tab-desc">Monitorización SSL y anti-amenazas.</span>
+            </div>
+          </button>
         </div>
       </div>
-    }
+
+      <!-- Interactive Mockup Screen -->
+      <div class="dashboard-mockup">
+        @switch (activeTab()) {
+        @case ('analytics') {
+        <div class="dashboard-header">
+          <div class="dashboard-title-area">
+            <h4>Panel de Analíticas</h4>
+            <p>Información en tiempo real del tráfico</p>
+          </div>
+          <span class="badge-new">🔥 En Vivo</span>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-widget">
+            <span class="widget-icon">👥</span>
+            <span class="stat-label">Visitas Únicas</span>
+            <span class="widget-value">24.8k</span>
+            <span class="widget-change plus">↑ +12.3%</span>
+          </div>
+          <div class="dashboard-widget">
+            <span class="widget-icon">🎯</span>
+            <span class="stat-label">Conversión</span>
+            <span class="widget-value">3.42%</span>
+            <span class="widget-change plus">↑ +8.1%</span>
+          </div>
+          <div class="dashboard-widget">
+            <span class="widget-icon">⏳</span>
+            <span class="stat-label">Tasa Rebote</span>
+            <span class="widget-value">41.2%</span>
+            <span class="widget-change minus">↓ -2.4%</span>
+          </div>
+        </div>
+
+        <div class="dashboard-big-widget">
+          <span class="stat-label">Tendencia de Tráfico Semanal</span>
+          <div class="chart-lines">
+            <div class="chart-dots-path"></div>
+            <div class="chart-point" style="margin-bottom: 10px;" data-label="Lun: 12k"></div>
+            <div class="chart-point" style="margin-bottom: 25px;" data-label="Mar: 15k"></div>
+            <div class="chart-point" style="margin-bottom: 18px;" data-label="Mié: 14k"></div>
+            <div class="chart-point" style="margin-bottom: 45px;" data-label="Jue: 21k"></div>
+            <div class="chart-point" style="margin-bottom: 60px;" data-label="Vie: 24k"></div>
+          </div>
+        </div>
+        }
+        @case ('performance') {
+        <div class="dashboard-header">
+          <div class="dashboard-title-area">
+            <h4>Core Web Vitals</h4>
+            <p>Optimización y velocidad de respuesta</p>
+          </div>
+          <span class="badge-new" style="background:#d1fae5; color:#065f46;">⚡ Excelente</span>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-widget">
+            <span class="widget-icon">⏱️</span>
+            <span class="stat-label">LCP Speed</span>
+            <span class="widget-value">0.8s</span>
+            <span class="widget-change plus">↑ Rápido</span>
+          </div>
+          <div class="dashboard-widget">
+            <span class="widget-icon">🖱️</span>
+            <span class="stat-label">FCP Time</span>
+            <span class="widget-value">0.2s</span>
+            <span class="widget-change plus">↑ +98%</span>
+          </div>
+          <div class="dashboard-widget">
+            <span class="widget-icon">📈</span>
+            <span class="stat-label">SEO Score</span>
+            <span class="widget-value">100/100</span>
+            <span class="widget-change plus">↑ Perfecto</span>
+          </div>
+        </div>
+
+        <div class="dashboard-big-widget">
+          <span class="stat-label">Carga Visual Progresiva (Segundos)</span>
+          <div class="chart-lines">
+            <div class="chart-dots-path" style="background: rgba(16, 185, 129, 0.2);"></div>
+            <div class="chart-point" style="background:#10b981; margin-bottom: 50px;" data-label="Solicitud"></div>
+            <div class="chart-point" style="background:#10b981; margin-bottom: 45px;" data-label="DOM Listo"></div>
+            <div class="chart-point" style="background:#10b981; margin-bottom: 10px;" data-label="Renderizado"></div>
+            <div class="chart-point" style="background:#10b981; margin-bottom: 5px;" data-label="Completo"></div>
+          </div>
+        </div>
+        }
+        @case ('security') {
+        <div class="dashboard-header">
+          <div class="dashboard-title-area">
+            <h4>Seguridad y Firewall</h4>
+            <p>Estado de la infraestructura segura</p>
+          </div>
+          <span class="badge-new" style="background:#dbeafe; color:#1e40af;">🛡️ Protegido</span>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dashboard-widget">
+            <span class="widget-icon">🔑</span>
+            <span class="stat-label">Certificado SSL</span>
+            <span class="widget-value">Activo</span>
+            <span class="widget-change plus">Válido</span>
+          </div>
+          <div class="dashboard-widget">
+            <span class="widget-icon">🚫</span>
+            <span class="stat-label">Ataques Bloqueados</span>
+            <span class="widget-value">0</span>
+            <span class="widget-change plus">Limpio</span>
+          </div>
+          <div class="dashboard-widget">
+            <span class="widget-icon">🌐</span>
+            <span class="stat-label">Uptime Servidor</span>
+            <span class="widget-value">99.99%</span>
+            <span class="widget-change plus">Estable</span>
+          </div>
+        </div>
+
+        <div class="dashboard-big-widget">
+          <span class="stat-label">Comprobaciones de Seguridad Diarias</span>
+          <div class="chart-lines">
+            <div class="chart-dots-path" style="background: rgba(59, 130, 246, 0.2);"></div>
+            <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="00:00 - OK"></div>
+            <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="06:00 - OK"></div>
+            <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="12:00 - OK"></div>
+            <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="18:00 - OK"></div>
+          </div>
+        </div>
+        }
+        }
+      </div>
+    </div>
   </section>
 
-  <!-- Sección: Proceso Creativo en Línea de Tiempo -->
-  <section id="proceso" class="timeline-section">
-    <div class="section-head">
-      <span class="section-tag">Flujo de Trabajo</span>
-      <h2>El Proceso Hacia la Excelencia</h2>
-      <p>Creemos en la transparencia y en una planeación meticulosa. Así es como llevamos tu idea desde un simple bosquejo inicial hasta un lanzamiento exitoso y de alto rendimiento.</p>
+  <!-- Sección de Precios -->
+  <section id="precios" class="pricing-section">
+    <div class="section-header">
+      <span class="section-badge">Tarifas</span>
+      <h2 class="section-title">Precios Claros y Transparentes</h2>
+      <p class="section-subtitle">
+        Elige el plan ideal para escalar tu negocio digital. Sin cargos ocultos, cancélalo cuando quieras.
+      </p>
     </div>
 
-    <div class="timeline-wrapper">
-      <div class="timeline-line-connector"></div>
+    <!-- Toggle Mensual / Anual -->
+    <div class="billing-toggle-container">
+      <span class="billing-label" [class.active]="!isYearlyBilling()">Facturación Mensual</span>
+      <label class="switch">
+        <input type="checkbox" [checked]="isYearlyBilling()" (change)="toggleBillingCycle()">
+        <span class="slider"></span>
+      </label>
+      <span class="billing-label" [class.active]="isYearlyBilling()">
+        Facturación Anual <span class="badge-discount">Ahorra 20%</span>
+      </span>
+    </div>
 
-      <!-- Step 1 -->
-      <div class="timeline-step">
-        <div class="timeline-card-wrap">
-          <div class="timeline-card">
-            <h3>01. Concepto e Investigación</h3>
-            <p>Nos sumergimos por completo en los valores e identidad de tu marca. Investigamos a tu audiencia objetiva y diseñamos un mapa de ruta estratégico para asegurar que cada píxel sume al éxito del proyecto.</p>
-          </div>
+    <div class="pricing-grid">
+      <!-- Plan 1 -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Plan Básico</h3>
+          <p>Ideal para profesionales y pequeños emprendimientos.</p>
         </div>
-        <div class="timeline-badge-node">
-          <div class="timeline-node">1</div>
+
+        <div class="pricing-price">
+          <span class="price-amount">
+            @if (isYearlyBilling()) {
+            $79
+            } @else {
+            $99
+            }
+          </span>
+          <span class="price-period">/ mes</span>
         </div>
-        <div class="timeline-empty"></div>
+
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span> 1 Sitio Web Responsivo</li>
+          <li><span class="check-icon">✓</span> Optimización de velocidad estándar</li>
+          <li><span class="check-icon">✓</span> Soporte por correo electrónico</li>
+          <li><span class="check-icon">✓</span> Certificado SSL Incluido</li>
+        </ul>
+
+        <button class="btn-secondary" (click)="scrollToSection('contacto')">Adquirir Básico</button>
       </div>
 
-      <!-- Step 2 -->
-      <div class="timeline-step">
-        <div class="timeline-empty"></div>
-        <div class="timeline-badge-node">
-          <div class="timeline-node">2</div>
+      <!-- Plan 2 (Popular) -->
+      <div class="pricing-card popular">
+        <div class="pricing-header">
+          <h3>Plan Profesional</h3>
+          <p>Para empresas que buscan crecimiento y analíticas avanzadas.</p>
         </div>
-        <div class="timeline-card-wrap">
-          <div class="timeline-card">
-            <h3>02. Diseño de Interfaces (UI/UX)</h3>
-            <p>Creamos guías visuales y maquetas interactivas inmersivas en alta fidelidad. Cuidamos meticulosamente la tipografía, los micro-efectos y la consistencia en el modo oscuro/claro para dar una sensación de máxima calidad.</p>
-          </div>
-        </div>
-      </div>
 
-      <!-- Step 3 -->
-      <div class="timeline-step">
-        <div class="timeline-card-wrap">
-          <div class="timeline-card">
-            <h3>03. Programación y Lanzamiento</h3>
-            <p>Codificamos la interfaz con rendimiento de carga extremo e integraciones dinámicas de vanguardia. Auditamos los Core Web Vitals, implementamos optimizaciones SEO robustas y desplegamos tu sitio web.</p>
-          </div>
+        <div class="pricing-price">
+          <span class="price-amount">
+            @if (isYearlyBilling()) {
+            $159
+            } @else {
+            $199
+            }
+          </span>
+          <span class="price-period">/ mes</span>
         </div>
-        <div class="timeline-badge-node">
-          <div class="timeline-node">3</div>
-        </div>
-        <div class="timeline-empty"></div>
+
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span> Sitios Web Ilimitados</li>
+          <li><span class="check-icon">✓</span> Optimización Extrema (LCP < 1s)</li>
+          <li><span class="check-icon">✓</span> Dashboard de Analíticas Premium</li>
+          <li><span class="check-icon">✓</span> Soporte prioritario 24/7</li>
+          <li><span class="check-icon">✓</span> Seguridad y Copias de Seguridad</li>
+        </ul>
+
+        <button class="btn-primary" (click)="scrollToSection('contacto')">Empezar con Pro 🚀</button>
       </div>
     </div>
   </section>
 
-  <!-- Sección: Contacto Creativo -->
+  <!-- Sección de Contacto -->
   <section id="contacto" class="contact-section">
-    <div class="contact-layout">
-      <div class="contact-branding">
-        <h2>¿Tienes un proyecto en mente? Hágamoslo realidad.</h2>
-        <p>Completa el formulario interactivo al lado o escríbenos directamente. Nuestro equipo te responderá en menos de 24 horas para agendar una sesión creativa de consultoría completamente gratuita.</p>
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h2>¿Listo para dar el gran paso digital?</h2>
+        <p>
+          Déjanos tus datos de contacto y cuéntanos un poco acerca de tu proyecto. Nuestro equipo técnico se pondrá en
+          contacto contigo en menos de 24 horas para agendar una consultoría gratuita.
+        </p>
 
-        <div class="contact-meta">
-          <div class="contact-meta-item">
-            <div class="meta-icon">✉️</div>
-            <div class="meta-info">
-              <h4>Email del Estudio</h4>
-              <p>hola@creativestudio.com</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <div class="detail-icon">📧</div>
+            <div class="detail-content">
+              <h4>Email de Consultas</h4>
+              <p>proyectos@mimarca.com</p>
             </div>
           </div>
 
-          <div class="contact-meta-item">
-            <div class="meta-icon">📍</div>
-            <div class="meta-info">
-              <h4>Base Creativa</h4>
+          <div class="contact-detail-item">
+            <div class="detail-icon">📍</div>
+            <div class="detail-content">
+              <h4>Ubicación</h4>
               <p>San José, Costa Rica</p>
             </div>
           </div>
@@ -263,31 +417,31 @@
       </div>
 
       <!-- Sleek Floating Form -->
-      <div class="contact-card-form">
+      <div class="contact-form">
         @if (formSubmitted()) {
-          <div class="form-success">
-            <span>🎉</span> ¡Mensaje enviado con éxito! Nos comunicaremos contigo muy pronto.
-          </div>
+        <div class="form-success-alert">
+          <span>🎉</span> ¡Mensaje enviado con éxito! Nos comunicaremos contigo pronto.
+        </div>
         }
 
         <form (submit)="onSubmit($event)">
-          <div class="field-group">
-            <input type="text" id="name" name="name" class="field-input" placeholder=" " required>
-            <label for="name" class="field-label">Nombre Completo</label>
+          <div class="form-group">
+            <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
+            <label for="name" class="form-label">Tu Nombre</label>
           </div>
 
-          <div class="field-group">
-            <input type="email" id="email" name="email" class="field-input" placeholder=" " required>
-            <label for="email" class="field-label">Dirección de Email</label>
+          <div class="form-group">
+            <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
+            <label for="email" class="form-label">Correo Electrónico</label>
           </div>
 
-          <div class="field-group">
-            <textarea id="message" name="message" class="field-input" rows="4" placeholder=" " required></textarea>
-            <label for="message" class="field-label">Cuéntanos sobre tu proyecto o idea...</label>
+          <div class="form-group">
+            <textarea id="message" name="message" class="form-input" rows="4" placeholder=" " required></textarea>
+            <label for="message" class="form-label">Cuéntanos sobre tu idea...</label>
           </div>
 
-          <button type="submit" class="btn-neon" style="width: 100%; justify-content: center;">
-            Enviar Mensaje Creativo ✉️
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            Enviar Mensaje ✉️
           </button>
         </form>
       </div>
@@ -298,19 +452,19 @@
   <footer class="app-footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo-wrap">
-          <div class="logo-glow">C</div>
-          <span class="logo-brand">CreativeStudio</span>
+        <div class="logo-container">
+          <div class="logo-icon">M</div>
+          <span class="logo-text">MiMarca</span>
         </div>
-        <p>Creamos experiencias digitales premium, inmersivas y ultra rápidas para potenciar marcas de vanguardia en todo el mundo.</p>
+        <p>Creamos experiencias digitales elegantes, ultrarrápidas y optimizadas para potenciar tu marca al máximo.</p>
       </div>
 
       <div class="footer-links-col">
-        <h4>Servicios</h4>
+        <h4>Compañía</h4>
         <ul>
-          <li><a href="#personalizador">Personalizador</a></li>
-          <li><a href="#proyectos">Portafolio</a></li>
-          <li><a href="#proceso">Nuestro Flujo</a></li>
+          <li><a href="#inicio">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#precios">Precios</a></li>
         </ul>
       </div>
 
@@ -318,23 +472,23 @@
         <h4>Legal</h4>
         <ul>
           <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Términos de Uso</a></li>
+          <li><a href="#">Términos</a></li>
           <li><a href="#">Cookies</a></li>
         </ul>
       </div>
 
       <div class="footer-links-col">
-        <h4>Contacto</h4>
+        <h4>Soporte</h4>
         <ul>
-          <li><a href="#contacto">Escríbenos</a></li>
-          <li><a href="#">Asistencia</a></li>
-          <li><a href="#">Preguntas Frecuentes</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Ayuda</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 CreativeStudio. Todos los derechos reservados.</p>
+      <p>&copy; 2026 MiMarca. Todos los derechos reservados.</p>
       <div class="footer-socials">
         <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
         <a href="#" class="social-link" aria-label="GitHub">🐙</a>
