@@ -1,236 +1,493 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Sitio Web | Inicio</title>
-    <style>
-        /* --- RESETS Y ESTILOS GLOBALES --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+<div class="app-container" [class.theme-dark]="isDarkMode()" [class.theme-light]="!isDarkMode()">
+  <!-- Glowing background elements -->
+  <div class="bg-ambient-light"></div>
+
+  <!-- Barra de Navegación Glassmorphic -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <div class="logo-icon">M</div>
+      <span class="logo-text">MiMarca</span>
+    </div>
+    
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#demostracion">Dashboard</a></li>
+      <li><a href="#precios">Planes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+
+    <div class="navbar-actions">
+      <!-- Theme Switch Button -->
+      <button class="theme-toggle-btn" (click)="toggleTheme()" aria-label="Cambiar tema">
+        @if (isDarkMode()) {
+          <span>☀️</span>
+        } @else {
+          <span>🌙</span>
         }
+      </button>
+      
+      <button class="btn-primary" (click)="scrollToSection('contacto')">
+        Comenzar
+      </button>
+    </div>
+  </nav>
 
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
+  <!-- Sección Hero -->
+  <header id="inicio" class="hero-section">
+    <div class="hero-content">
+      <div class="badge-new">
+        <span>🚀</span> ¡Descubre el nuevo diseño ultra rápido!
+      </div>
+      
+      <h1 class="hero-title">
+        Construye el futuro de tu <span>negocio digital</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Diseñamos y desarrollamos soluciones web de alta gama que combinan estética premium con rendimiento excepcional. Hacemos que tu marca destaque en internet.
+      </p>
+      
+      <div class="hero-actions">
+        <button class="btn-primary" (click)="scrollToSection('precios')">
+          Ver Planes ⚡
+        </button>
+        <button class="btn-secondary" (click)="scrollToSection('servicios')">
+          Saber Más
+        </button>
+      </div>
+    </div>
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* --- BARRA DE NAVEGACIÓN --- */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 10%;
-            background-color: #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2b6cb0;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #2b6cb0;
-        }
-
-        /* --- SECCIÓN HERO (BIENVENIDA) --- */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 80vh;
-            background: linear-gradient(135deg, #2b6cb0 0%, #4299e1 100%);
-            color: white;
-            padding: 0 1rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 600px;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #ffffff;
-            color: #2b6cb0;
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        /* --- SECCIÓN DE CARACTERÍSTICAS --- */
-        .features {
-            padding: 5rem 10%;
-            text-align: center;
-        }
-
-        .features h2 {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .features h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background-color: #2b6cb0;
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .card {
-            background-color: white;
-            padding: 2.5rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .card h3 {
-            margin-bottom: 0.5rem;
-            color: #2d3748;
-        }
-
-        .card p {
-            color: #718096;
-            font-size: 0.95rem;
-        }
-
-        /* --- PIE DE PÁGINA --- */
-        footer {
-            background-color: #1a202c;
-            color: #a0aec0;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-        }
-
-        /* --- RESPONSIVE (MÓVILES) --- */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Barra de Navegación -->
-    <nav class="navbar">
-        <div class="logo">MiMarca</div>
-        <ul class="nav-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li><a href="#">Nosotros</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <!-- Sección Hero -->
-    <header class="hero">
-        <h1>Bienvenido a Tu Futuro Digital</h1>
-        <p>Creamos soluciones web modernas, rápidas y adaptadas a tus necesidades para hacer crecer tu negocio.</p>
-        <a href="#" class="btn">Empezar Ahora</a>
-    </header>
-
-    <!-- Sección de Servicios/Características -->
-    <section class="features">
-        <h2>Nuestros Servicios</h2>
-        <div class="grid">
-            <div class="card">
-                <div class="card-icon">💻</div>
-                <h3>Diseño Web</h3>
-                <p>Sitios web atractivos y optimizados para dar la mejor primera impresión.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <h3>Optimización</h3>
-                <p>Velocidad de carga ultrarrápida para que tus usuarios no tengan que esperar.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon">📱</div>
-                <h3>Diseño Responsivo</h3>
-                <p>Tu página se verá perfecta en teléfonos, tabletas y computadoras.</p>
-            </div>
+    <!-- Floating Interactive Mockup Widget -->
+    <div class="hero-mockup-wrapper">
+      <div class="glow-backdrop"></div>
+      <div class="hero-mockup">
+        <div class="mockup-header">
+          <div class="mockup-dots">
+            <span class="mockup-dot red"></span>
+            <span class="mockup-dot yellow"></span>
+            <span class="mockup-dot green"></span>
+          </div>
+          <span class="mockup-title">Rendimiento en Vivo</span>
         </div>
-    </section>
+        
+        <div class="mockup-chart-row">
+          <div class="mockup-chart-bar" style="height: 60%;" data-val="60%"></div>
+          <div class="mockup-chart-bar" style="height: 85%;" data-val="85%"></div>
+          <div class="mockup-chart-bar" style="height: 70%;" data-val="70%"></div>
+          <div class="mockup-chart-bar" style="height: 98%;" data-val="98%"></div>
+          <div class="mockup-chart-bar" style="height: 78%;" data-val="78%"></div>
+          <div class="mockup-chart-bar" style="height: 90%;" data-val="90%"></div>
+        </div>
 
-    <!-- Pie de Página -->
-    <footer>
-        <p>&copy; 2026 MiMarca. Todos los derechos reservados.</p>
-    </footer>
+        <div class="mockup-stats">
+          <div class="stat-item">
+            <span class="stat-label">Velocidad UX</span>
+            <span class="stat-value">99.8%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Crecimiento SEO</span>
+            <span class="stat-value">+42.5%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-</body>
-</html>
+  <!-- Sección de Servicios/Características -->
+  <section id="servicios" class="services-section">
+    <div class="section-header">
+      <span class="section-badge">Qué Hacemos</span>
+      <h2 class="section-title">Servicios de Nivel Premium</h2>
+      <p class="section-subtitle">
+        Nos enfocamos en la excelencia técnica y el diseño de interacción para darte una ventaja competitiva real.
+      </p>
+    </div>
+
+    <div class="grid-cards">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Diseño Web Premium</h3>
+        <p>Interfaces personalizadas con animaciones fluidas y una experiencia de usuario que enamora a primera vista.</p>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <h3>Optimización Extrema</h3>
+        <p>Estructura de código limpia y moderna para tiempos de carga inferiores a 1 segundo, maximizando la retención.</p>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Adaptabilidad Total</h3>
+        <p>Desarrollo responsive meticuloso que asegura que tu marca brille en smartphones, tablets y pantallas gigantes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Demostrativa Interactiva (Dashboard Mockup) -->
+  <section id="demostracion" class="showcase-section">
+    <div class="section-header">
+      <span class="section-badge">Demostración</span>
+      <h2 class="section-title">Control Total de tus Métricas</h2>
+      <p class="section-subtitle">
+        Haz clic en las pestañas del panel lateral para simular en tiempo real cómo gestionamos los diferentes aspectos de tu sitio web.
+      </p>
+    </div>
+
+    <div class="showcase-container">
+      <!-- Tabs Switcher -->
+      <div class="showcase-content">
+        <div class="tabs-container">
+          <button class="tab-btn" [class.active]="activeTab() === 'analytics'" (click)="setActiveTab('analytics')">
+            <div class="tab-icon">📊</div>
+            <div class="tab-details">
+              <span class="tab-title">Analíticas Avanzadas</span>
+              <span class="tab-desc">Visitas, conversiones e interacciones.</span>
+            </div>
+          </button>
+
+          <button class="tab-btn" [class.active]="activeTab() === 'performance'" (click)="setActiveTab('performance')">
+            <div class="tab-icon">⚡</div>
+            <div class="tab-details">
+              <span class="tab-title">Rendimiento Web</span>
+              <span class="tab-desc">Métricas Core Web Vitals optimizadas.</span>
+            </div>
+          </button>
+
+          <button class="tab-btn" [class.active]="activeTab() === 'security'" (click)="setActiveTab('security')">
+            <div class="tab-icon">🔒</div>
+            <div class="tab-details">
+              <span class="tab-title">Seguridad Activa</span>
+              <span class="tab-desc">Monitorización SSL y anti-amenazas.</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive Mockup Screen -->
+      <div class="dashboard-mockup">
+        @switch (activeTab()) {
+          @case ('analytics') {
+            <div class="dashboard-header">
+              <div class="dashboard-title-area">
+                <h4>Panel de Analíticas</h4>
+                <p>Información en tiempo real del tráfico</p>
+              </div>
+              <span class="badge-new">🔥 En Vivo</span>
+            </div>
+            
+            <div class="dashboard-grid">
+              <div class="dashboard-widget">
+                <span class="widget-icon">👥</span>
+                <span class="stat-label">Visitas Únicas</span>
+                <span class="widget-value">24.8k</span>
+                <span class="widget-change plus">↑ +12.3%</span>
+              </div>
+              <div class="dashboard-widget">
+                <span class="widget-icon">🎯</span>
+                <span class="stat-label">Conversión</span>
+                <span class="widget-value">3.42%</span>
+                <span class="widget-change plus">↑ +8.1%</span>
+              </div>
+              <div class="dashboard-widget">
+                <span class="widget-icon">⏳</span>
+                <span class="stat-label">Tasa Rebote</span>
+                <span class="widget-value">41.2%</span>
+                <span class="widget-change minus">↓ -2.4%</span>
+              </div>
+            </div>
+
+            <div class="dashboard-big-widget">
+              <span class="stat-label">Tendencia de Tráfico Semanal</span>
+              <div class="chart-lines">
+                <div class="chart-dots-path"></div>
+                <div class="chart-point" style="margin-bottom: 10px;" data-label="Lun: 12k"></div>
+                <div class="chart-point" style="margin-bottom: 25px;" data-label="Mar: 15k"></div>
+                <div class="chart-point" style="margin-bottom: 18px;" data-label="Mié: 14k"></div>
+                <div class="chart-point" style="margin-bottom: 45px;" data-label="Jue: 21k"></div>
+                <div class="chart-point" style="margin-bottom: 60px;" data-label="Vie: 24k"></div>
+              </div>
+            </div>
+          }
+          @case ('performance') {
+            <div class="dashboard-header">
+              <div class="dashboard-title-area">
+                <h4>Core Web Vitals</h4>
+                <p>Optimización y velocidad de respuesta</p>
+              </div>
+              <span class="badge-new" style="background:#d1fae5; color:#065f46;">⚡ Excelente</span>
+            </div>
+            
+            <div class="dashboard-grid">
+              <div class="dashboard-widget">
+                <span class="widget-icon">⏱️</span>
+                <span class="stat-label">LCP Speed</span>
+                <span class="widget-value">0.8s</span>
+                <span class="widget-change plus">↑ Rápido</span>
+              </div>
+              <div class="dashboard-widget">
+                <span class="widget-icon">🖱️</span>
+                <span class="stat-label">FCP Time</span>
+                <span class="widget-value">0.2s</span>
+                <span class="widget-change plus">↑ +98%</span>
+              </div>
+              <div class="dashboard-widget">
+                <span class="widget-icon">📈</span>
+                <span class="stat-label">SEO Score</span>
+                <span class="widget-value">100/100</span>
+                <span class="widget-change plus">↑ Perfecto</span>
+              </div>
+            </div>
+
+            <div class="dashboard-big-widget">
+              <span class="stat-label">Carga Visual Progresiva (Segundos)</span>
+              <div class="chart-lines">
+                <div class="chart-dots-path" style="background: rgba(16, 185, 129, 0.2);"></div>
+                <div class="chart-point" style="background:#10b981; margin-bottom: 50px;" data-label="Solicitud"></div>
+                <div class="chart-point" style="background:#10b981; margin-bottom: 45px;" data-label="DOM Listo"></div>
+                <div class="chart-point" style="background:#10b981; margin-bottom: 10px;" data-label="Renderizado"></div>
+                <div class="chart-point" style="background:#10b981; margin-bottom: 5px;" data-label="Completo"></div>
+              </div>
+            </div>
+          }
+          @case ('security') {
+            <div class="dashboard-header">
+              <div class="dashboard-title-area">
+                <h4>Seguridad y Firewall</h4>
+                <p>Estado de la infraestructura segura</p>
+              </div>
+              <span class="badge-new" style="background:#dbeafe; color:#1e40af;">🛡️ Protegido</span>
+            </div>
+            
+            <div class="dashboard-grid">
+              <div class="dashboard-widget">
+                <span class="widget-icon">🔑</span>
+                <span class="stat-label">Certificado SSL</span>
+                <span class="widget-value">Activo</span>
+                <span class="widget-change plus">Válido</span>
+              </div>
+              <div class="dashboard-widget">
+                <span class="widget-icon">🚫</span>
+                <span class="stat-label">Ataques Bloqueados</span>
+                <span class="widget-value">0</span>
+                <span class="widget-change plus">Limpio</span>
+              </div>
+              <div class="dashboard-widget">
+                <span class="widget-icon">🌐</span>
+                <span class="stat-label">Uptime Servidor</span>
+                <span class="widget-value">99.99%</span>
+                <span class="widget-change plus">Estable</span>
+              </div>
+            </div>
+
+            <div class="dashboard-big-widget">
+              <span class="stat-label">Comprobaciones de Seguridad Diarias</span>
+              <div class="chart-lines">
+                <div class="chart-dots-path" style="background: rgba(59, 130, 246, 0.2);"></div>
+                <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="00:00 - OK"></div>
+                <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="06:00 - OK"></div>
+                <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="12:00 - OK"></div>
+                <div class="chart-point" style="background:#3b82f6; margin-bottom: 30px;" data-label="18:00 - OK"></div>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Precios -->
+  <section id="precios" class="pricing-section">
+    <div class="section-header">
+      <span class="section-badge">Tarifas</span>
+      <h2 class="section-title">Precios Claros y Transparentes</h2>
+      <p class="section-subtitle">
+        Elige el plan ideal para escalar tu negocio digital. Sin cargos ocultos, cancélalo cuando quieras.
+      </p>
+    </div>
+
+    <!-- Toggle Mensual / Anual -->
+    <div class="billing-toggle-container">
+      <span class="billing-label" [class.active]="!isYearlyBilling()">Facturación Mensual</span>
+      <label class="switch">
+        <input type="checkbox" [checked]="isYearlyBilling()" (change)="toggleBillingCycle()">
+        <span class="slider"></span>
+      </label>
+      <span class="billing-label" [class.active]="isYearlyBilling()">
+        Facturación Anual <span class="badge-discount">Ahorra 20%</span>
+      </span>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Plan 1 -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <h3>Plan Básico</h3>
+          <p>Ideal para profesionales y pequeños emprendimientos.</p>
+        </div>
+        
+        <div class="pricing-price">
+          <span class="price-amount">
+            @if (isYearlyBilling()) {
+              $79
+            } @else {
+              $99
+            }
+          </span>
+          <span class="price-period">/ mes</span>
+        </div>
+
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span> 1 Sitio Web Responsivo</li>
+          <li><span class="check-icon">✓</span> Optimización de velocidad estándar</li>
+          <li><span class="check-icon">✓</span> Soporte por correo electrónico</li>
+          <li><span class="check-icon">✓</span> Certificado SSL Incluido</li>
+        </ul>
+
+        <button class="btn-secondary" (click)="scrollToSection('contacto')">Adquirir Básico</button>
+      </div>
+
+      <!-- Plan 2 (Popular) -->
+      <div class="pricing-card popular">
+        <div class="pricing-header">
+          <h3>Plan Profesional</h3>
+          <p>Para empresas que buscan crecimiento y analíticas avanzadas.</p>
+        </div>
+        
+        <div class="pricing-price">
+          <span class="price-amount">
+            @if (isYearlyBilling()) {
+              $159
+            } @else {
+              $199
+            }
+          </span>
+          <span class="price-period">/ mes</span>
+        </div>
+
+        <ul class="pricing-features">
+          <li><span class="check-icon">✓</span> Sitios Web Ilimitados</li>
+          <li><span class="check-icon">✓</span> Optimización Extrema (LCP < 1s)</li>
+          <li><span class="check-icon">✓</span> Dashboard de Analíticas Premium</li>
+          <li><span class="check-icon">✓</span> Soporte prioritario 24/7</li>
+          <li><span class="check-icon">✓</span> Seguridad y Copias de Seguridad</li>
+        </ul>
+
+        <button class="btn-primary" (click)="scrollToSection('contacto')">Empezar con Pro 🚀</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Contacto -->
+  <section id="contacto" class="contact-section">
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h2>¿Listo para dar el gran paso digital?</h2>
+        <p>
+          Déjanos tus datos de contacto y cuéntanos un poco acerca de tu proyecto. Nuestro equipo técnico se pondrá en contacto contigo en menos de 24 horas para agendar una consultoría gratuita.
+        </p>
+
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <div class="detail-icon">📧</div>
+            <div class="detail-content">
+              <h4>Email de Consultas</h4>
+              <p>proyectos@mimarca.com</p>
+            </div>
+          </div>
+          
+          <div class="contact-detail-item">
+            <div class="detail-icon">📍</div>
+            <div class="detail-content">
+              <h4>Ubicación</h4>
+              <p>San José, Costa Rica</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sleek Floating Form -->
+      <div class="contact-form">
+        @if (formSubmitted()) {
+          <div class="form-success-alert">
+            <span>🎉</span> ¡Mensaje enviado con éxito! Nos comunicaremos contigo pronto.
+          </div>
+        }
+
+        <form (submit)="onSubmit($event)">
+          <div class="form-group">
+            <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
+            <label for="name" class="form-label">Tu Nombre</label>
+          </div>
+
+          <div class="form-group">
+            <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
+            <label for="email" class="form-label">Correo Electrónico</label>
+          </div>
+
+          <div class="form-group">
+            <textarea id="message" name="message" class="form-input" rows="4" placeholder=" " required></textarea>
+            <label for="message" class="form-label">Cuéntanos sobre tu idea...</label>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+            Enviar Mensaje ✉️
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer de la Aplicación -->
+  <footer class="app-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-container">
+          <div class="logo-icon">M</div>
+          <span class="logo-text">MiMarca</span>
+        </div>
+        <p>Creamos experiencias digitales elegantes, ultrarrápidas y optimizadas para potenciar tu marca al máximo.</p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Compañía</h4>
+        <ul>
+          <li><a href="#inicio">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#precios">Precios</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Términos</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Soporte</h4>
+        <ul>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Ayuda</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 MiMarca. Todos los derechos reservados.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link" aria-label="Twitter">𝕏</a>
+        <a href="#" class="social-link" aria-label="GitHub">🐙</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
+      </div>
+    </div>
+  </footer>
+</div>
