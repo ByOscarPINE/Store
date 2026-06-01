@@ -5,19 +5,15 @@ import { Products } from './pages/products/products';
 
 export const routes: Routes = [
     {
-        path: "",
-        component: Home
-    },
-    {
-        path: "**",
-        component: Home
-    },
-    {
         path: "NewProduct",
         component: NewProduct
     },
     {
-        path: "Products",
+        path: "products",
         component: Products
-    }
+    },
+    {
+        path: "",
+        component: Home
+    },
 ];
